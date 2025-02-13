@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+<!-- 巴氏量表計算機 -->
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brunnstrom 分期评估工具</title>
+    <title>Barthel Index Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 30px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #ffffff; /* 背景色為白色 */
+            color: #000000; /* 文字顏色為黑色 */
         }
         h1 {
             text-align: center;
-            color: #333333;
+            color: #333333; /* 標題顏色為深灰色 */
         }
         .question {
             margin-bottom: 20px;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* 柔和的淺灰色背景 */
             padding: 15px;
-            border: 1px solid #dddddd;
+            border: 1px solid #dddddd; /* 淺灰色邊框 */
             border-radius: 5px;
             box-shadow: 2px 2px 12px rgb(0 0 0 / 10%);
         }
         .question label {
             font-weight: bold;
-            color: #333333;
+            color: #333333; /* 標題顏色為深灰色 */
         }
         .options {
             margin-top: 10px;
@@ -34,17 +36,24 @@
             margin-right: 10px;
         }
         .result {
-            font-size: 24px;
+            font-size: 24px; /* 字體增大 */
             font-weight: bold;
             margin-top: 30px;
             text-align: center;
-            color: #000000;
+            color: #000000; /* 文字顏色為黑色 */
+        }
+        .result div {
+            margin-bottom: 5px;
+        }
+        .result div span {
+            display: inline-block;
+            width: 150px; /* 固定寬度以對齊 */
         }
         .btn {
             display: block;
             margin: 20px auto;
-            padding: 15px 40px;
-            font-size: 20px;
+            padding: 15px 40px; /* 调整按钮大小 */
+            font-size: 20px;     /* 调整按钮字体大小 */
             background-color: #00796b;
             color: #fff;
             border: none;
@@ -63,19 +72,24 @@
             margin-top: 50px;
             color: #777;
         }
-        /* 响应式设计 */
+        /* 響應式設計 */
         @media (max-width: 600px) {
             body {
                 margin: 10px;
             }
+            .result div span {
+                display: block;
+                width: auto;
+                text-align: left;
+            }
             .result {
-                font-size: 20px;
+                font-size: 20px; /* 手機端字體稍小 */
             }
             .question {
                 padding: 10px;
             }
             .btn {
-                padding: 10px 20px;
+                padding: 10px 20px; /* 調小手機端的按鈕 */
                 font-size: 18px;
             }
         }
@@ -84,119 +98,236 @@
 <body>
 
 <div class="container">
-    <h1>Brunnstrom 分期评估工具</h1>
+<h1>Muscle Power Assessment</h1>
 
-    <form id="brunnstromForm">
-        <!-- 问题1 -->
+    <form id="musclePowerForm">
+        <!-- 上肢 -->
         <div class="question">
-            <label>1. 患者是否有任何自主的肌肉收缩？</label>
-            <div class="options">
-                <input type="radio" name="q1" value="yes" required> 是<br>
-                <input type="radio" name="q1" value="no"> 否
+            <label>上肢 Upper Extremity</label>
+            <!-- Elbow -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">肘關節 Elbow</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftElbow" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightElbow" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wrist -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">手腕 Wrist</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftWrist" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightWrist" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Finger -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">手指 Finger</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftFinger" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightFinger" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- 问题2 -->
+        <!-- 下肢 -->
         <div class="question">
-            <label>2. 患者是否出现痉挛？</label>
-            <div class="options">
-                <input type="radio" name="q2" value="yes" required> 是<br>
-                <input type="radio" name="q2" value="no"> 否
+            <label>下肢 Lower Extremity</label>
+            <!-- Hip -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">髖關節 Hip</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftHip" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightHip" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Knee -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">膝關節 Knee</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftKnee" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightKnee" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ankle -->
+            <div style="margin-top: 15px;">
+                <label style="color: #666;">踝關節 Ankle</label>
+                <div class="options">
+                    <div style="margin-bottom: 10px;">
+                        <label>左側 Left:</label>
+                        <select name="leftAnkle" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>右側 Right:</label>
+                        <select name="rightAnkle" required>
+                            <option value="1">1 - 可見肌肉收縮</option>
+                            <option value="2">2 - 水平移動可完成關節活動</option>
+                            <option value="3">3 - 對抗地心引力可完成關節活動</option>
+                            <option value="4">4 - 對抗阻力可完成關節活動</option>
+                            <option value="5" selected>5 - 正常肌力</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- 问题3 -->
-        <div class="question">
-            <label>3. 患者能否自主完成基本的肢体协同运动？</label>
-            <div class="options">
-                <input type="radio" name="q3" value="yes" required> 是<br>
-                <input type="radio" name="q3" value="no"> 否
-            </div>
-        </div>
-
-        <!-- 问题4 -->
-        <div class="question">
-            <label>4. 患者能否进行协同运动之外的部分动作？</label>
-            <div class="options">
-                <input type="radio" name="q4" value="yes" required> 是<br>
-                <input type="radio" name="q4" value="no"> 否
-            </div>
-        </div>
-
-        <!-- 问题5 -->
-        <div class="question">
-            <label>5. 患者的痉挛是否明显减弱？</label>
-            <div class="options">
-                <input type="radio" name="q5" value="yes" required> 是<br>
-                <input type="radio" name="q5" value="no"> 否
-            </div>
-        </div>
-
-        <!-- 问题6 -->
-        <div class="question">
-            <label>6. 患者能否进行单独的关节运动？</label>
-            <div class="options">
-                <input type="radio" name="q6" value="yes" required> 是<br>
-                <input type="radio" name="q6" value="no"> 否
-            </div>
-        </div>
-
-        <!-- 问题7 -->
-        <div class="question">
-            <label>7. 患者的运动功能是否已恢复正常？</label>
-            <div class="options">
-                <input type="radio" name="q7" value="yes" required> 是<br>
-                <input type="radio" name="q7" value="no"> 否
-            </div>
-        </div>
-
-        <!-- 评估按钮 -->
-        <button type="button" class="btn" onclick="evaluateBrunnstrom()">评估</button>
+        <button type="button" class="btn" onclick="calculateMusclePower()">評估</button>
     </form>
 
-    <!-- 结果显示 -->
     <div class="result" id="result"></div>
-
 </div>
 
 <div class="footer">
     &copy; BigbigDada
 </div>
 
-<script>
-    function evaluateBrunnstrom() {
-        var form = document.getElementById('brunnstromForm');
+    <script>
+    function calculateMusclePower() {
+        var form = document.getElementById('musclePowerForm');
         var elements = form.elements;
+        
+        // 獲取所有關節的分數
+        var joints = {
+            '左側肘關節': elements['leftElbow'].value,
+            '右側肘關節': elements['rightElbow'].value,
+            '左側手腕': elements['leftWrist'].value,
+            '右側手腕': elements['rightWrist'].value,
+            '左側手指': elements['leftFinger'].value,
+            '右側手指': elements['rightFinger'].value,
+            '左側髖關節': elements['leftHip'].value,
+            '右側髖關節': elements['rightHip'].value,
+            '左側膝關節': elements['leftKnee'].value,
+            '右側膝關節': elements['rightKnee'].value,
+            '左側踝關節': elements['leftAnkle'].value,
+            '右側踝關節': elements['rightAnkle'].value
+        };
 
-        var q1 = elements['q1'].value;
-        var q2 = elements['q2'].value;
-        var q3 = elements['q3'].value;
-        var q4 = elements['q4'].value;
-        var q5 = elements['q5'].value;
-        var q6 = elements['q6'].value;
-        var q7 = elements['q7'].value;
+        // 計算平均分數
+        var totalScore = 0;
+        var count = 0;
+        for (var joint in joints) {
+            totalScore += parseInt(joints[joint]);
+            count++;
+        }
+        var averageScore = (totalScore / count).toFixed(2);
 
-        var result = '';
+        // 構建結果顯示
+        var resultText = `
+            <div style="margin-bottom: 20px">平均肌力評分: ${averageScore}</div>
+            <div style="font-size: 18px; text-align: left;">
+        `;
 
-        if (q1 === 'no') {
-            result = 'Brunnstrom 分期：I期（松弛期）';
-        } else if (q2 === 'yes' && q3 === 'no') {
-            result = 'Brunnstrom 分期：II期（痉挛出现）';
-        } else if (q3 === 'yes' && q4 === 'no') {
-            result = 'Brunnstrom 分期：III期（痉挛加重）';
-        } else if (q4 === 'yes' && q5 === 'yes' && q6 === 'no') {
-            result = 'Brunnstrom 分期：IV期（痉挛减轻）';
-        } else if (q6 === 'yes' && q7 === 'no') {
-            result = 'Brunnstrom 分期：V期（复杂运动出现）';
-        } else if (q7 === 'yes') {
-            result = 'Brunnstrom 分期：VI期（协同运动消失）';
-        } else {
-            result = 'Brunnstrom 分期：VII期（正常功能）';
+        for (var joint in joints) {
+            resultText += `<div>${joint}: ${joints[joint]}</div>`;
         }
 
-        document.getElementById('result').innerText = result;
+        resultText += '</div>';
+
+        // 顯示結果
+        var resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = resultText;
     }
-</script>
+    </script>
 
 </body>
-</html>
+</html>             
